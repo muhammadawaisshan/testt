@@ -68,8 +68,12 @@ class ChargerRemovalService : Service() {
             registerReceiver(chargerReceiver, chargerFilter, RECEIVER_EXPORTED)
             registerReceiver(screenReceiver, screenFilter, RECEIVER_EXPORTED)
         } else {
-            @Suppress("UnspecifiedRegisterReceiverFlag") registerReceiver(chargerReceiver, chargerFilter)
-            @Suppress("UnspecifiedRegisterReceiverFlag") registerReceiver(screenReceiver, screenFilter)
+            @Suppress("UnspecifiedRegisterReceiverFlag") registerReceiver(
+                chargerReceiver, chargerFilter
+            )
+            @Suppress("UnspecifiedRegisterReceiverFlag") registerReceiver(
+                screenReceiver, screenFilter
+            )
         }
 
         return START_STICKY
@@ -127,12 +131,11 @@ class ChargerRemovalService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Charger Removal Protection")
             .setContentText("Monitoring charger connection")
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentIntent(openAppPendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .build()
+            .setSmallIcon(R.drawable.ic_launcher_foreground).setContentIntent(openAppPendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT).build()
     }
-  inner  class ScreenReceiver : BroadcastReceiver() {
+
+    inner class ScreenReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action == Intent.ACTION_SCREEN_OFF) {
 
@@ -142,9 +145,9 @@ class ChargerRemovalService : Service() {
                 Log.d("ChargerRemovalService", "Screen Unlocked")
 
 
-               unlockCount++
+                unlockCount++
 
-                if (unlockCount % 2==0) {
+                if (unlockCount % 2 == 0) {
                     stopAlarm()
                 }
             }
