@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -29,37 +29,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Column(
-                        modifier = Modifier.padding(innerPadding),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        ButtonWithStatus(text = "One", isEnabled = false, onClick = {})
-                        ButtonWithStatus(text = "Two", isEnabled = false, onClick = {})
-                        ButtonWithStatus(text = "Three", isEnabled = false, onClick = {})
-                    }
+                    MainScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
 }
 
-@Composable
-fun ButtonWithStatus(
-    modifier: Modifier = Modifier, text: String = "", isEnabled: Boolean, onClick: () -> Unit
-) {
-    Button(
-        onClick = onClick,
-        modifier = modifier,
-        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.background)
-    ) {
-        Text(
-            text = text + (if (isEnabled) " Running" else " Stopped"),
-            fontSize = 12.sp,
-            color = Color.White
-        )
-    }
-}
 
 
 
