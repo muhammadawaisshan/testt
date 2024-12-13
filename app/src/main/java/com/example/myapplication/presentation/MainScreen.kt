@@ -29,12 +29,7 @@ fun MainScreen(modifier: Modifier,viewModel: MainViewModel = hiltViewModel()) {
     val countdownTime by viewModel.countdownTime.collectAsStateWithLifecycle()
 
     Column(modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-        ServiceButton(
-            text = "Pocket Removal",
-            isActive = serviceStatuses.isPocketRemovalActive,countdownTime = countdownTime,
-            onClick = { viewModel.toggleService(ServiceType.POCKET_REMOVAL) }
-        )
-        Spacer(modifier = Modifier.height(16.dp))
+
         ServiceButton(
             text = "Charger Removal",
             isActive = serviceStatuses.isChargerRemovalActive,
@@ -45,6 +40,13 @@ fun MainScreen(modifier: Modifier,viewModel: MainViewModel = hiltViewModel()) {
             text = "Motion Detection",
             isActive = serviceStatuses.isMotionDetectionActive,
             onClick = { viewModel.toggleService(ServiceType.MOTION_DETECTION) }
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        ServiceButton(
+            text = "Pocket Removal",
+            isActive = serviceStatuses.isPocketRemovalActive,countdownTime = countdownTime,
+            onClick = { viewModel.toggleService(ServiceType.POCKET_REMOVAL) }
         )
     }
 }

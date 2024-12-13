@@ -33,7 +33,7 @@ fun ServiceButton(
     )
 
     val buttonColor = when {
-        text == "Pocket Removal" && countdownTime > 0 -> Color.Blue.copy(alpha = 0.5f) // Countdown phase
+        text == "Pocket Removal" && countdownTime > 0 -> Color.Yellow.copy(alpha = 0.5f) // Countdown phase
         isActive -> Color.Green
         else -> Color.Red
     }
